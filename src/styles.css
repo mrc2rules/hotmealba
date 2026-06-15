@@ -1,0 +1,175 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand */
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-sienna: var(--sienna);
+  --color-sienna-deep: var(--sienna-deep);
+  --color-teal: var(--teal);
+  --color-ochre: var(--ochre);
+  --color-stamp-red: var(--sienna);
+
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-serif: "Lora", Georgia, serif;
+  --font-script: "Caveat", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --paper: oklch(0.945 0.025 80);
+  --paper-deep: oklch(0.895 0.04 75);
+  --ink: oklch(0.22 0.02 50);
+  --sienna: oklch(0.48 0.13 35);
+  --sienna-deep: oklch(0.38 0.12 32);
+  --teal: oklch(0.38 0.06 195);
+  --ochre: oklch(0.65 0.13 70);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(0.965 0.018 82);
+  --card-foreground: var(--ink);
+  --popover: var(--card);
+  --popover-foreground: var(--ink);
+  --primary: var(--sienna);
+  --primary-foreground: var(--paper);
+  --secondary: var(--teal);
+  --secondary-foreground: var(--paper);
+  --muted: var(--paper-deep);
+  --muted-foreground: oklch(0.42 0.03 50);
+  --accent: var(--ochre);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.5 0.18 28);
+  --destructive-foreground: var(--paper);
+  --border: oklch(0.78 0.04 70);
+  --input: oklch(0.82 0.03 70);
+  --ring: var(--sienna);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-foreground);
+    font-family: var(--font-serif);
+    background-image:
+      radial-gradient(ellipse at 20% 10%, oklch(0.88 0.05 75 / 0.5), transparent 50%),
+      radial-gradient(ellipse at 80% 80%, oklch(0.85 0.06 60 / 0.4), transparent 50%),
+      url("./assets/paper-bg.jpg");
+    background-size: auto, auto, 800px 600px;
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-attachment: fixed, fixed, fixed;
+    background-blend-mode: multiply, multiply, normal;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+/* ---- Vintage utilities ---- */
+@utility paper-card {
+  background: var(--color-card);
+  border: 1px solid color-mix(in oklab, var(--color-ink) 12%, transparent);
+  box-shadow:
+    0 1px 0 color-mix(in oklab, var(--color-ink) 8%, transparent),
+    0 12px 24px -16px color-mix(in oklab, var(--color-ink) 35%, transparent),
+    inset 0 0 60px color-mix(in oklab, var(--color-sienna) 4%, transparent);
+}
+
+@utility stamp-card {
+  background: var(--color-card);
+  padding: 0.75rem;
+  --stamp-color: var(--color-paper-deep);
+  -webkit-mask:
+    radial-gradient(circle 6px at 6px 6px, transparent 98%, #000 100%) -6px -6px;
+  mask:
+    radial-gradient(circle 6px at 6px 6px, transparent 98%, #000 100%) -6px -6px;
+  -webkit-mask-size: 14px 14px;
+  mask-size: 14px 14px;
+  filter: drop-shadow(0 6px 12px color-mix(in oklab, var(--color-ink) 25%, transparent));
+}
+
+@utility ink-underline {
+  background-image: linear-gradient(transparent 60%, color-mix(in oklab, var(--color-ochre) 50%, transparent) 60%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+@utility ribbon {
+  background: var(--color-sienna);
+  color: var(--color-paper);
+  position: relative;
+}
+
+@utility deckle {
+  -webkit-mask: radial-gradient(circle 4px at 4px 50%, transparent 98%, #000) 0 0/8px 8px repeat-x,
+    radial-gradient(circle 4px at 4px 50%, transparent 98%, #000) 0 100%/8px 8px repeat-x,
+    linear-gradient(#000, #000);
+  -webkit-mask-composite: source-over;
+}
+
+@keyframes stamp-thud {
+  0% { transform: scale(1) rotate(0); }
+  40% { transform: scale(0.94) rotate(-1.5deg); }
+  70% { transform: scale(1.02) rotate(0.8deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+@utility animate-stamp-thud { animation: stamp-thud 0.4s ease-out; }
+
+@keyframes ink-bleed {
+  0% { opacity: 0; filter: blur(8px); transform: translateY(8px); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+@utility animate-ink-bleed { animation: ink-bleed 0.7s ease-out both; }
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(var(--tw-rotate, 0deg)); }
+  50% { transform: rotate(calc(var(--tw-rotate, 0deg) + 1.5deg)) translateY(-2px); }
+}
+@utility hover-wobble {
+  transition: transform 0.3s;
+  &:hover { animation: wobble 0.6s ease-in-out; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@utility animate-marquee { animation: marquee 30s linear infinite; }
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(var(--r, -8deg)); }
+  50% { transform: translateY(-8px) rotate(calc(var(--r, -8deg) + 2deg)); }
+}
+@utility animate-float { animation: float-slow 6s ease-in-out infinite; }
