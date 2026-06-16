@@ -10,7 +10,7 @@ This is a campus food ordering platform for the restaurant **Hot Meals Ba** that
 
 [![License: All Rights Reserved](https://img.shields.io/badge/License-All%20Rights%20Reserved-lightgrey.svg)]()
 
-© 2026 Rahbab Chowdhiry. All rights reserved.
+© 2026 Rahbab Chowdhury. All rights reserved.
 
 This source code is provided for viewing purposes only. No part of this repository may be copied, modified, distributed, or used to create derivative works without the prior written permission of the copyright holder.
 
