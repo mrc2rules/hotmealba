@@ -9,7 +9,7 @@ const links = [
   { to: "/track", label: "Track Order" },
   { to: "/sell", label: "Sell With Us" },
   { to: "/orders", label: "Seller Ledger" },
-  { to: "/grabfood", label: "GrabFood" },
+  { to: "/foodpanda", label: "Foodpanda" },
 ] as const;
 
 export function SiteNav() {
@@ -174,8 +174,8 @@ export function SiteFooter() {
           </div>
           <div className="font-serif text-sm text-ink/75 space-y-2">
             <div className="font-display text-ink mb-2 text-lg">Company</div>
-            <Link to="/grabfood" className="block hover:text-sienna transition-colors">GrabFood</Link>
-            <Link to="/orders" className="block hover:text-sienna transition-colors">Seller Desk</Link>
+            <Link to="/foodpanda" className="block hover:text-sienna transition-colors">Foodpanda</Link>
+            <Link to="/orders" className="block hover:text-sienna transition-colors">Seller Ledger</Link>
             <div className="hover:text-sienna transition-colors cursor-pointer">About Us</div>
             <div className="hover:text-sienna transition-colors cursor-pointer">Careers</div>
           </div>

@@ -81,7 +81,7 @@ function MenuPage() {
       {/* floating cart button */}
       <button
         onClick={() => setCartOpen(true)}
-        className="fixed bottom-6 right-6 z-40 bg-sienna text-paper rounded-full px-5 py-3 font-display shadow-[4px_4px_0_0_var(--color-ink)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_var(--color-ink)] transition-all flex items-center gap-2"
+        className="fixed bottom-6 left-6 z-40 bg-sienna text-paper rounded-full px-5 py-3 font-display shadow-[4px_4px_0_0_var(--color-ink)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_var(--color-ink)] transition-all flex items-center gap-2"
       >
         <ShoppingBasket className="w-5 h-5" />
         Basket · {cart.count}
@@ -89,7 +89,7 @@ function MenuPage() {
 
       {/* receipt drawer */}
       {cartOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end animate-ink-bleed" onClick={() => setCartOpen(false)}>
+        <div className="fixed inset-0 z-50 flex justify-start animate-ink-bleed" onClick={() => setCartOpen(false)}>
           <div className="absolute inset-0 bg-ink/40 backdrop-blur-sm" />
           <div
             className="relative w-full max-w-md bg-card overflow-y-auto shadow-2xl"

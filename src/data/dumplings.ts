@@ -18,8 +18,8 @@ export const dumplings: Dumpling[] = [
   { id: "d04", name: "Handmade Noodles", cn: "鲜虾笋丁面", desc: "Whole prawn, crisp bamboo shoot, sesame oil.", filling: "seafood", packSize: 12, price: 28, originalPrice: 32, badge: "New", popularity: 81 },
   { id: "d05", name: "Vegetable Stew", cn: "蔬菜炖菜", desc: "Shiitake, oyster, enoki — vegetarian, full of umami.", filling: "veg", packSize: 20, price: 16, badge: "Halal Certified", popularity: 76 },
   { id: "d06", name: "Rice Meal Combo", cn: "米饭套餐", desc: "Numbing peppercorn, chili oil, a quiet kick.", filling: "beef", packSize: 20, price: 22, badge: "Spicy", popularity: 84 },
-  { id: "d07", name: "Orange Juice", cn: "橙汁", desc: "Fresh and sweet orange juice.", filling: "veg", packSize: 30, price: 6, popularity: 70 },
-  { id: "d08", name: "HMB Special Gift Box", cn: "HMB特制礼盒", desc: "Special curated gift box pack.", filling: "chicken", packSize: 20, price: 50, badge: "New", popularity: 79 },
+  { id: "d07", name: "Orange Juice", cn: "橙汁", desc: "Fresh and sweet orange juice.", filling: "veg", packSize: 1, price: 6, popularity: 70 },
+  { id: "d08", name: "HMB Special Gift Box", cn: "HMB特制礼盒", desc: "Special curated gift box pack.", filling: "chicken", packSize: 1, price: 50, badge: "New", popularity: 79 },
 ];
 
 export const filterCategories = [

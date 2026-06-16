@@ -13,7 +13,7 @@ import { Route as TrackRouteImport } from './routes/track'
 import { Route as SellRouteImport } from './routes/sell'
 import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as MenuRouteImport } from './routes/menu'
-import { Route as GrabfoodRouteImport } from './routes/grabfood'
+import { Route as FoodpandaRouteImport } from './routes/foodpanda'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -37,9 +37,9 @@ const MenuRoute = MenuRouteImport.update({
   path: '/menu',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GrabfoodRoute = GrabfoodRouteImport.update({
-  id: '/grabfood',
-  path: '/grabfood',
+const FoodpandaRoute = FoodpandaRouteImport.update({
+  id: '/foodpanda',
+  path: '/foodpanda',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutRoute = CheckoutRouteImport.update({
@@ -56,7 +56,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
-  '/grabfood': typeof GrabfoodRoute
+  '/foodpanda': typeof FoodpandaRoute
   '/menu': typeof MenuRoute
   '/orders': typeof OrdersRoute
   '/sell': typeof SellRoute
@@ -65,7 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
-  '/grabfood': typeof GrabfoodRoute
+  '/foodpanda': typeof FoodpandaRoute
   '/menu': typeof MenuRoute
   '/orders': typeof OrdersRoute
   '/sell': typeof SellRoute
@@ -75,7 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
-  '/grabfood': typeof GrabfoodRoute
+  '/foodpanda': typeof FoodpandaRoute
   '/menu': typeof MenuRoute
   '/orders': typeof OrdersRoute
   '/sell': typeof SellRoute
@@ -86,18 +86,25 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/checkout'
-    | '/grabfood'
+    | '/foodpanda'
     | '/menu'
     | '/orders'
     | '/sell'
     | '/track'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/checkout' | '/grabfood' | '/menu' | '/orders' | '/sell' | '/track'
+  to:
+    | '/'
+    | '/checkout'
+    | '/foodpanda'
+    | '/menu'
+    | '/orders'
+    | '/sell'
+    | '/track'
   id:
     | '__root__'
     | '/'
     | '/checkout'
-    | '/grabfood'
+    | '/foodpanda'
     | '/menu'
     | '/orders'
     | '/sell'
@@ -107,7 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CheckoutRoute: typeof CheckoutRoute
-  GrabfoodRoute: typeof GrabfoodRoute
+  FoodpandaRoute: typeof FoodpandaRoute
   MenuRoute: typeof MenuRoute
   OrdersRoute: typeof OrdersRoute
   SellRoute: typeof SellRoute
@@ -144,11 +151,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenuRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/grabfood': {
-      id: '/grabfood'
-      path: '/grabfood'
-      fullPath: '/grabfood'
-      preLoaderRoute: typeof GrabfoodRouteImport
+    '/foodpanda': {
+      id: '/foodpanda'
+      path: '/foodpanda'
+      fullPath: '/foodpanda'
+      preLoaderRoute: typeof FoodpandaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout': {
@@ -171,7 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CheckoutRoute: CheckoutRoute,
-  GrabfoodRoute: GrabfoodRoute,
+  FoodpandaRoute: FoodpandaRoute,
   MenuRoute: MenuRoute,
   OrdersRoute: OrdersRoute,
   SellRoute: SellRoute,
