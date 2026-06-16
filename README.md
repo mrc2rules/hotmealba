@@ -1,6 +1,7 @@
-# Hot Meal Bar Website🥟
+# Hot Meal Ba Website Design🥟
 
-The winning websited design for the VibeUI Design Competition hosted alongside Digitex in Faculty of Computing, UTM on 15th June 2026. 
+The winning website design for the **VibeUI Design Competition** hosted alongside Digitex in **Faculty of Computing, UTM on 15th June 2026.**
+
 This is a campus food ordering platform for the restaurant **Hot Meals Ba** that lets students browse a menu, place an order, track its delivery in real time, and even sign up to become a student seller. The site is built as a fast, mobile-friendly web app with a hand-stamped, vintage-postal visual theme.
 
 ## License
