@@ -39,7 +39,7 @@ function TrackPage() {
             value={q}
             onChange={e => setQ(e.target.value)}
             placeholder="Enter phone number (e.g., +60 13-555 0942) or order ID"
-            className="w-full pl-10 pr-3 py-3 border-2 border-ink/25 bg-paper/60 font-mono text-ink focus:outline-none focus:border-sienna"
+            className="w-full pl-10 pr-3 py-3 text-base border-2 border-ink/25 bg-paper/60 font-mono text-ink focus:outline-none focus:border-sienna"
           />
         </div>
         <button className="bg-sienna text-paper px-6 py-3 font-display shadow-[4px_4px_0_0_var(--color-ink)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_var(--color-ink)] transition-all">

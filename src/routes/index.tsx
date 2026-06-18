@@ -1,21 +1,23 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { dumplings } from "@/data/dumplings";
 import { Stamp, SectionHeading } from "@/components/stamp";
 import { useCart } from "@/components/cart-context";
 import stampDumplings from "@/assets/stamp-dumplings.png";
 import postmark from "@/assets/postmark.png";
-import dumplingIllo from "@/assets/dumpling-1.png";
+import { getHomeMenuImage } from "@/lib/home-menu-images";
+import { getMenuImage } from "@/lib/menu-images";
+import homeD01 from "@/assets/home-d01.png";
 import { toast } from "sonner";
 import { Plus, ArrowRight, X, Minus, ShoppingBasket } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hot Meal Bar — Frozen Dumplings, Hand-Pleated at KTF" },
-      { name: "description", content: "Hand-pleated Chinese Muslim dumplings from KTF, UTM. Browse our menu, place an order, or join as a student seller." },
-      { property: "og:title", content: "Hot Meal Bar — Frozen Dumplings, Hand-Pleated at KTF" },
-      { property: "og:description", content: "Hand-pleated Chinese Muslim dumplings from KTF, UTM." },
+      { title: "Hot Meal Bar — Homemade Meals from KTF" },
+      { name: "description", content: "Chinese Muslim kitchen at KTF, UTM — dumplings, noodles, satay & more. Browse our menu, place an order, or join as a student seller." },
+      { property: "og:title", content: "Hot Meal Bar — Homemade Meals from KTF" },
+      { property: "og:description", content: "Chinese Muslim kitchen at KTF, UTM — dumplings, noodles, satay & more." },
     ],
   }),
   component: Home,
@@ -30,8 +32,27 @@ function Home() {
   const quickPicks = [...dumplings].sort((a, b) => b.popularity - a.popularity).slice(0, 4);
   const count = items.reduce((a, b) => a + b.qty, 0);
 
+  const storyRef = useRef<HTMLDivElement>(null);
+  const [hasTriggered, setHasTriggered] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasTriggered) {
+          setHasTriggered(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (storyRef.current) {
+      observer.observe(storyRef.current);
+    }
+    return () => observer.disconnect();
+  }, [hasTriggered]);
+
   // Countdown effect from 2026 to 1989
   useEffect(() => {
+    if (!hasTriggered) return;
     const startYear = 2026;
     const endYear = 1989;
     const duration = 2000; // 2 seconds
@@ -49,11 +70,12 @@ function Home() {
     }, intervalTime);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [hasTriggered]);
 
   // Typing effect for paragraph
   useEffect(() => {
-    const text = "Hot Meal Bar is a small Chinese Muslim kitchen at Kolej Tun Fatimah, UTM. We make our wrappers from scratch every morning. The fillings come from local halal-certified suppliers in Skudai. Everything is blast-frozen within the hour so when it lands in your hostel freezer, it tastes like it was just pleated.";
+    if (!hasTriggered) return;
+    const text = "Hot Meal Bar is a small Chinese Muslim kitchen at Kolej Tun Fatimah, UTM. Dumplings, noodles, satay, and rice combos — all made fresh from halal-certified ingredients in Skudai. Most items are blast-frozen within the hour so when they land in your hostel freezer, they taste like they just left the kitchen.";
     let index = 0;
     const interval = setInterval(() => {
       if (index < text.length) {
@@ -64,7 +86,7 @@ function Home() {
       }
     }, 30);
     return () => clearInterval(interval);
-  }, []);
+  }, [hasTriggered]);
 
   return (
     <div>
@@ -87,30 +109,28 @@ function Home() {
             </div>
             <h1 className="font-display text-5xl md:text-7xl leading-[1.05] text-ink">
               <span className="font-script text-sienna text-4xl md:text-6xl block italic -mb-2">a taste of</span>
-              Hot Meal Bar
-              <span className="block font-script text-3xl md:text-5xl text-teal italic mt-2">delivered frozen.</span>
+              Hot Meal Ba
+              <span className="block font-script text-3xl md:text-5xl text-teal italic mt-2">Authentic Halal Chinese Cuisine.</span>
             </h1>
             <p className="mt-6 max-w-xl font-serif text-lg text-ink/80 leading-relaxed">
-              We pleat every dumpling by hand at the Kolej Tun Fatimah kitchen —
-              halal-certified, Chinese-Muslim, and slow-made. Stock your freezer.
-              Feed your hostel. Feed your friends.
+            From hand-pleated dumplings to rich, home-style mains, Hot Meal Ba brings authentic Chinese Muslim cooking to your table - every dish prepared fresh, halal, and full of flavor.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 to="/menu"
                 className="inline-flex items-center gap-2 bg-sienna text-paper px-6 py-3 font-display text-lg shadow-[4px_4px_0_0_var(--color-ink)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0_0_var(--color-ink)] transition-all"
               >
-                Order Dumplings <ArrowRight className="w-5 h-5" />
+                Order Now! <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 to="/sell"
                 className="inline-flex items-center gap-2 border-2 border-ink/70 px-6 py-3 font-display text-lg text-ink hover:bg-ochre/30 transition-colors"
               >
-                Sell with us
+                Work with us
               </Link>
             </div>
             <div className="mt-10 flex flex-wrap items-center gap-6 font-serif text-sm text-ink/70">
-              <div><span className="font-display text-2xl text-sienna">12k+</span> dumplings shipped</div>
+              <div><span className="font-display text-2xl text-sienna">12k+</span> meals shipped</div>
               <div className="h-6 w-px bg-ink/30" />
               <div><span className="font-display text-2xl text-sienna">200+</span> orders / week</div>
               <div className="h-6 w-px bg-ink/30" />
@@ -132,7 +152,7 @@ function Home() {
               style={{ ["--r" as string]: "12deg" }}
             />
             <img
-              src={dumplingIllo}
+              src={homeD01}
               alt=""
               aria-hidden
               className="absolute bottom-0 left-0 w-28 opacity-90 animate-float"
@@ -207,7 +227,7 @@ function Home() {
                       </div>
                       <div className="font-script text-2xl text-sienna leading-none mt-1">{d.cn}</div>
                     </div>
-                    <img src={dumplingIllo} alt={d.name} className="w-32 h-32 object-contain" />
+                    <img src={getHomeMenuImage(d.id)} alt={d.name} className="w-32 h-32 object-contain" />
                     <div className="text-center">
                       <div className="font-display text-base text-ink leading-tight">{d.name}</div>
                       <div className="font-display text-xl text-sienna mt-1">RM {d.price}</div>
@@ -218,7 +238,7 @@ function Home() {
             </div>
             <div className="text-center mt-8">
               <Link to="/menu" className="inline-flex items-center gap-2 font-display text-sienna text-lg hover:gap-3 transition-all">
-                See all dumplings <ArrowRight className="w-5 h-5" />
+                See full menu <ArrowRight className="w-5 h-5" />
               </Link>
             </div>
           </div>
@@ -226,32 +246,32 @@ function Home() {
       </section>
 
       {/* STORY */}
-      <section className="mx-auto max-w-7xl px-4 md:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
+      <section ref={storyRef} className="mx-auto max-w-7xl px-4 md:px-8 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div className="relative">
           <div className="paper-card p-8 relative">
             <div className="font-mono text-xs uppercase tracking-[0.3em] text-sienna/80 mb-3">— A Letter From The Kitchen —</div>
             <p className="font-serif text-lg text-ink/85 leading-relaxed">
               We started in 2019 with one rolling pin and a folding table in the
-              KTF cafeteria. Today we ship hundreds of bags of frozen dumplings
-              across UTM each week — still hand-pleated, still halal, still made
-              the way Auntie Ling taught us.
+              KTF cafeteria. Today we ship hundreds of meals across UTM each
+              week — still hand-made, still halal, still made the way Auntie
+              Ling taught us.
             </p>
             <p className="font-serif text-lg text-ink/85 leading-relaxed mt-4">
-              If you'd like a side income while studying — pleat with us, sell
+              If you'd like a side income while studying — cook with us, sell
               with us, eat well with us.
             </p>
             <div className="mt-6 font-script text-2xl text-sienna">— Auntie Ling & team</div>
           </div>
           <img src={postmark} alt="" aria-hidden className="hidden md:block absolute -bottom-8 -left-8 w-28 -rotate-12 opacity-70" />
         </div>
-        <div>
+        <div className="paper-card p-8 md:p-12 relative">
           <h2 className="font-display text-7xl md:text-8xl font-bold text-ink leading-none">
             {countdown}
           </h2>
           <p className="mt-5 font-serif text-ink/80 leading-relaxed min-h-[120px]">
             {typedText}
           </p>
-          <div className="mt-6 inline-flex items-center gap-3 border-2 border-dashed border-ink/40 px-4 py-2">
+          <div className="mt-6 inline-flex items-center gap-3 border-2 border-dashed border-ink/40 px-4 py-2 bg-paper/50">
             <div className="font-display text-3xl text-sienna">JAKIM</div>
             <div className="font-mono text-xs text-ink/70 leading-tight">
               HALAL CERTIFIED<br />MS 1500:2019
@@ -295,7 +315,7 @@ function Home() {
         <div className="fixed inset-0 z-50 flex justify-start animate-ink-bleed" onClick={() => setCartOpen(false)}>
           <div className="absolute inset-0 bg-ink/40 backdrop-blur-sm" />
           <div
-            className="relative w-full max-w-md bg-card overflow-y-auto shadow-2xl"
+            className="relative w-full max-w-full sm:max-w-md bg-card overflow-y-auto shadow-2xl"
             style={{
               backgroundImage:
                 "repeating-linear-gradient(transparent, transparent 27px, oklch(0.78 0.04 70 / 0.4) 27px, oklch(0.78 0.04 70 / 0.4) 28px)",
@@ -315,7 +335,7 @@ function Home() {
               )}
               {items.map(({ dumpling: d, qty }) => (
                 <div key={d.id} className="flex items-center gap-3 border-b border-dashed border-ink/20 pb-3">
-                  <img src={dumplingIllo} alt="" className="w-12 h-12 opacity-80" />
+                  <img src={getMenuImage(d.id)} alt="" className="w-12 h-12 object-cover opacity-80" />
                   <div className="flex-1">
                     <div className="font-display text-ink">{d.name}</div>
                     <div className="font-mono text-xs text-ink/60">RM {d.price} · pack of {d.packSize}</div>

@@ -58,13 +58,13 @@ function OrdersPage() {
             value={q}
             onChange={e => setQ(e.target.value)}
             placeholder="Search by order #, delivery ID, or customer…"
-            className="w-full pl-10 pr-3 py-2 border-2 border-ink/25 bg-paper/60 font-mono text-ink focus:outline-none focus:border-sienna"
+            className="w-full pl-10 pr-3 py-2 h-11 text-base border-2 border-ink/25 bg-paper/60 font-mono text-ink focus:outline-none focus:border-sienna"
           />
         </div>
-        <select className="border-2 border-ink/25 bg-paper/60 px-3 py-2 font-serif" value={status} onChange={e => setStatus(e.target.value as typeof status)}>
+        <select className="border-2 border-ink/25 bg-paper/60 px-3 py-2 h-11 text-base font-serif" value={status} onChange={e => setStatus(e.target.value as typeof status)}>
           {STATUSES.map(s => <option key={s}>{s}</option>)}
         </select>
-        <select className="border-2 border-ink/25 bg-paper/60 px-3 py-2 font-serif" value={campus} onChange={e => setCampus(e.target.value as typeof campus)}>
+        <select className="border-2 border-ink/25 bg-paper/60 px-3 py-2 h-11 text-base font-serif" value={campus} onChange={e => setCampus(e.target.value as typeof campus)}>
           {["All", "KTF", "Alumni", "KTC", "KTHO", "KTR"].map(c => <option key={c}>{c}</option>)}
         </select>
       </div>

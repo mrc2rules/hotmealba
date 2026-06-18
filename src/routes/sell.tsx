@@ -102,7 +102,7 @@ function SellPage() {
   );
 }
 
-const input = "w-full border-2 border-ink/25 bg-paper/60 px-3 py-2 font-serif text-ink focus:outline-none focus:border-sienna transition-colors";
+const input = "w-full border-2 border-ink/25 bg-paper/60 px-3 py-2 h-11 text-base font-serif text-ink focus:outline-none focus:border-sienna transition-colors";
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
     <label className="block">

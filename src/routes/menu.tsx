@@ -3,39 +3,17 @@ import { useState, useMemo } from "react";
 import { dumplings, filterCategories, type Dumpling } from "@/data/dumplings";
 import { useCart } from "@/components/cart-context";
 import { SectionHeading } from "@/components/stamp";
-import dumplingIllo from "@/assets/dumpling-1.png";
-import postmark from "@/assets/postmark.png";
+import { getMenuImage } from "@/lib/menu-images";
 import { Plus, Minus, X, ShoppingBasket } from "lucide-react";
 import { toast } from "sonner";
-
-// Import menu item images
-import menuD01 from "@/assets/menu-d01.png";
-import menuD02 from "@/assets/menu-d02.png";
-import menuD03 from "@/assets/menu-d03.png";
-import menuD04 from "@/assets/menu-d04.png";
-import menuD05 from "@/assets/menu-d05.png";
-import menuD06 from "@/assets/menu-d06.png";
-import menuD07 from "@/assets/menu-d07.png";
-import menuD08 from "@/assets/menu-d08.png";
-
-const menuImages: Record<string, string> = {
-  d01: menuD01,
-  d02: menuD02,
-  d03: menuD03,
-  d04: menuD04,
-  d05: menuD05,
-  d06: menuD06,
-  d07: menuD07,
-  d08: menuD08,
-};
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
-      { title: "Dumpling Menu · Hot Meal Bar" },
-      { name: "description", content: "Browse the full Hot Meal Bar dumpling menu — hand-pleated, halal-certified, blast-frozen." },
-      { property: "og:title", content: "Dumpling Menu · Hot Meal Bar" },
-      { property: "og:description", content: "Browse the full Hot Meal Bar dumpling menu — hand-pleated, halal-certified, blast-frozen." },
+      { title: "Menu · Hot Meal Bar" },
+      { name: "description", content: "Browse the full Hot Meal Bar menu — dumplings, noodles, satay, and more. Halal-certified, made fresh at KTF." },
+      { property: "og:title", content: "Menu · Hot Meal Bar" },
+      { property: "og:description", content: "Browse the full Hot Meal Bar menu — dumplings, noodles, satay, and more." },
     ],
   }),
   component: MenuPage,
@@ -72,7 +50,7 @@ function MenuPage() {
       </div>
 
       {/* product grid */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((d, i) => (
           <ProductCard key={d.id} d={d} tilt={(i % 3 - 1) * 0.5} onAdd={() => { cart.add(d); toast.success(`${d.name} added`); }} />
         ))}
@@ -92,7 +70,7 @@ function MenuPage() {
         <div className="fixed inset-0 z-50 flex justify-start animate-ink-bleed" onClick={() => setCartOpen(false)}>
           <div className="absolute inset-0 bg-ink/40 backdrop-blur-sm" />
           <div
-            className="relative w-full max-w-md bg-card overflow-y-auto shadow-2xl"
+            className="relative w-full max-w-full sm:max-w-md bg-card overflow-y-auto shadow-2xl"
             style={{
               backgroundImage:
                 "repeating-linear-gradient(transparent, transparent 27px, oklch(0.78 0.04 70 / 0.4) 27px, oklch(0.78 0.04 70 / 0.4) 28px)",
@@ -112,7 +90,7 @@ function MenuPage() {
               )}
               {cart.items.map(({ dumpling: d, qty }) => (
                 <div key={d.id} className="flex items-center gap-3 border-b border-dashed border-ink/20 pb-3">
-                  <img src={dumplingIllo} alt="" className="w-12 h-12 opacity-80" />
+                  <img src={getMenuImage(d.id)} alt="" className="w-12 h-12 object-cover opacity-80" />
                   <div className="flex-1">
                     <div className="font-display text-ink">{d.name}</div>
                     <div className="font-mono text-xs text-ink/60">RM {d.price} · pack of {d.packSize}</div>
@@ -149,7 +127,7 @@ function MenuPage() {
 }
 
 function ProductCard({ d, tilt, onAdd }: { d: Dumpling; tilt: number; onAdd: () => void }) {
-  const menuImage = menuImages[d.id] || dumplingIllo;
+  const menuImage = getMenuImage(d.id);
 
   return (
     <div
@@ -188,7 +166,7 @@ function ProductCard({ d, tilt, onAdd }: { d: Dumpling; tilt: number; onAdd: () 
           </div>
           <button
             onClick={onAdd}
-            className="bg-teal text-paper px-3 py-1.5 text-sm font-display hover:bg-sienna transition-colors shadow-[2px_2px_0_0_rgba(0,0,0,0.3)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_rgba(0,0,0,0.3)]"
+            className="bg-teal text-paper px-3 py-2 text-sm font-display hover:bg-sienna transition-colors shadow-[2px_2px_0_0_rgba(0,0,0,0.3)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0_0_rgba(0,0,0,0.3)]"
           >
             + Add
           </button>

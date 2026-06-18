@@ -186,7 +186,7 @@ function CheckoutPage() {
                       placeholder="•••• •••• •••• ••••" 
                     />
                   </Field>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <Field label="Expiry" error={errors.exp?.message}>
                       <input 
                         className={errors.exp ? inputErrorCls : inputCls} 
@@ -298,8 +298,8 @@ function Steps({ step }: { step: Step }) {
   );
 }
 
-const inputCls = "w-full border-2 border-ink/25 bg-paper/60 px-3 py-2 font-serif text-ink focus:outline-none focus:border-sienna transition-colors";
-const inputErrorCls = "w-full border-2 border-destructive bg-paper/60 px-3 py-2 font-serif text-ink focus:outline-none focus:border-destructive transition-colors";
+const inputCls = "w-full border-2 border-ink/25 bg-paper/60 px-3 py-2 h-11 text-base font-serif text-ink focus:outline-none focus:border-sienna transition-colors";
+const inputErrorCls = "w-full border-2 border-destructive bg-paper/60 px-3 py-2 h-11 text-base font-serif text-ink focus:outline-none focus:border-destructive transition-colors";
 
 function Field({ label, required, children, error }: { label: string; required?: boolean; children: React.ReactNode; error?: string }) {
   return (

@@ -7,7 +7,7 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/menu", label: "Menu" },
   { to: "/track", label: "Track Order" },
-  { to: "/sell", label: "Sell With Us" },
+  { to: "/sell", label: "Work With Us" },
   { to: "/orders", label: "Seller Ledger" },
   { to: "/foodpanda", label: "Foodpanda" },
 ] as const;
@@ -42,8 +42,8 @@ export function SiteNav() {
             className="h-12 w-12 object-contain group-hover:animate-stamp-thud"
           />
           <div className="leading-tight hidden sm:block">
-            <div className="font-display text-lg text-ink">Hot Meal Bar</div>
-            <div className="font-script text-sienna text-sm -mt-1">est. KTF · UTM</div>
+            <div className="font-display text-lg text-ink">Hot Meal Ba</div>
+            <div className="font-script text-sienna text-sm -mt-1">est. 1989</div>
           </div>
         </Link>
 
@@ -165,25 +165,25 @@ export function SiteFooter() {
 
         {/* Links Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-          <div className="font-serif text-sm text-ink/75 space-y-2">
+          <div className="font-serif text-sm text-ink/75 space-y-1 md:space-y-2">
             <div className="font-display text-ink mb-2 text-lg">Navigation</div>
-            <Link to="/" className="block hover:text-sienna transition-colors">Home</Link>
-            <Link to="/menu" className="block hover:text-sienna transition-colors">Menu</Link>
-            <Link to="/track" className="block hover:text-sienna transition-colors">Track Order</Link>
-            <Link to="/sell" className="block hover:text-sienna transition-colors">Sell With Us</Link>
+            <Link to="/" className="block py-2 md:py-0 hover:text-sienna transition-colors">Home</Link>
+            <Link to="/menu" className="block py-2 md:py-0 hover:text-sienna transition-colors">Menu</Link>
+            <Link to="/track" className="block py-2 md:py-0 hover:text-sienna transition-colors">Track Order</Link>
+            <Link to="/sell" className="block py-2 md:py-0 hover:text-sienna transition-colors">Sell With Us</Link>
           </div>
-          <div className="font-serif text-sm text-ink/75 space-y-2">
+          <div className="font-serif text-sm text-ink/75 space-y-1 md:space-y-2">
             <div className="font-display text-ink mb-2 text-lg">Company</div>
-            <Link to="/foodpanda" className="block hover:text-sienna transition-colors">Foodpanda</Link>
-            <Link to="/orders" className="block hover:text-sienna transition-colors">Seller Ledger</Link>
-            <div className="hover:text-sienna transition-colors cursor-pointer">About Us</div>
-            <div className="hover:text-sienna transition-colors cursor-pointer">Careers</div>
+            <Link to="/foodpanda" className="block py-2 md:py-0 hover:text-sienna transition-colors">Foodpanda</Link>
+            <Link to="/orders" className="block py-2 md:py-0 hover:text-sienna transition-colors">Seller Ledger</Link>
+            <div className="py-2 md:py-0 hover:text-sienna transition-colors cursor-pointer">About Us</div>
+            <div className="py-2 md:py-0 hover:text-sienna transition-colors cursor-pointer">Careers</div>
           </div>
-          <div className="font-serif text-sm text-ink/75 space-y-2">
+          <div className="font-serif text-sm text-ink/75 space-y-1 md:space-y-2">
             <div className="font-display text-ink mb-2 text-lg">Contact</div>
-            <p>WhatsApp · +60 13-555 0942</p>
-            <p>hello@hotmealbar.my</p>
-            <div className="hover:text-sienna transition-colors cursor-pointer">Contact Us</div>
+            <p className="py-1 md:py-0">WhatsApp · +60 13-555 0942</p>
+            <p className="py-1 md:py-0">hello@hotmealbar.my</p>
+            <div className="py-2 md:py-0 hover:text-sienna transition-colors cursor-pointer">Contact Us</div>
           </div>
           <div className="font-serif text-sm text-ink/75 space-y-2">
             <div className="font-display text-ink mb-2 text-lg">Location</div>
@@ -197,7 +197,7 @@ export function SiteFooter() {
         {/* Copyright */}
         <div className="border-t border-ink/20 pt-6 text-center">
           <p className="text-xs text-ink/55">
-            © 2026 Hot Meal Bar. All flavours reserved.
+            © 2026 Hot Meal Ba. All flavours reserved.
           </p>
         </div>
       </div>
